@@ -11,11 +11,27 @@ const BalanceFactor = {
     UNBALANCED_LEFT: 5
 }
 
-export class Node {
+const Color = {
+    RED: 1,
+    BLACK: -1
+}
+
+class Node {
     constructor(key) {
         this.key = key
         this.left = null;
         this.right = null
+    }
+}
+
+class RebBlackNode extends Node {
+    constructor(key) {
+        super(key)
+        this.key = key
+        this.color = Color.RED
+    }
+    idRed() {
+        return this.color === Color.RED
     }
 }
 
@@ -147,7 +163,7 @@ export default class BinarySearchTree {
     }
 }
 
-class AVLTree extends BinarySearchTree {
+export class AVLTree extends BinarySearchTree {
     constructor(compareFn = defaultCompare) {
         super(compareFn)
         this.compareFn = compareFn
@@ -265,5 +281,13 @@ class AVLTree extends BinarySearchTree {
             }
         }
         return node
+    }
+}
+
+export class RedBlackTree extends BinarySearchTree {
+    constructor(compareFn = defaultCompare) {
+        super(compareFn)
+        this.compareFn = compareFn
+        this.root = null
     }
 }
