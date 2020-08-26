@@ -3,7 +3,7 @@ import {
     defaultCompare
 } from "../util.js"
 
- export class Node {
+export class Node {
     constructor(key) {
         this.key = key
         this.left = null;
@@ -30,7 +30,8 @@ export default class BinarySearchTree {
             } else {
                 this.insertNode(node.left, key)
             }
-        } else {
+        }
+        if (this.compareFn(node.key, key) === Compare.LESS_THAN) {
             if (node.right == null) {
                 node.right = new Node(key)
             } else {
@@ -114,27 +115,63 @@ export default class BinarySearchTree {
     }
 
     // 中序遍历
-    inOrderTraverse(node, cb) {
-        if (node.root != null) {
-            this.inOrderTraverse(node.left, cb)
+    inOrderTraverse(cb) {
+        this.inOrderTraverseNode(this.root, cb)
+    }
+    inOrderTraverseNode(node, cb) {
+        if (node != null) {
+            this.inOrderTraverseNode(node.left, cb)
             cb(node.key)
-            this.inOrderTraverse(node.right, cb)
+            this.inOrderTraverseNode(node.right, cb)
         }
     }
     // 先序遍历
-    preOrderTraverse(node, cb) {
-        if (node.root != null) {
+    preOrderTraverse(cb) {
+        this.preOrderTraverseNode(this.root, cb)
+    }
+    preOrderTraverseNode(node, cb) {
+        if (node != null) {
             cb(node.key)
-            this.preOrderTraverse(node.left, cb)
-            this.preOrderTraverse(node.right, cb)
+            this.preOrderTraverseNode(node.left, cb)
+            this.preOrderTraverseNode(node.right, cb)
         }
     }
     // 后序遍历
-    postOrderTraverse(node, cb) {
-        if (node.root != null) {
-            this.postOrderTraverse(node.left, key)
-            this.postOrderTraverse(node.right, key)
+    postOrderTraverse(cb) {
+        this.postOrderTraverseNode(this.root, cb)
+    }
+    postOrderTraverseNode(node, cb) {
+        if (node != null) {
+            this.postOrderTraverseNode(node.left, cb)
+            this.postOrderTraverseNode(node.right, cb)
             cb(node.key)
         }
     }
 }
+
+
+let newTree = new BinarySearchTree()
+newTree.insert(11)
+newTree.insert(3)
+newTree.insert(15)
+newTree.insert(6)
+newTree.insert(13)
+newTree.insert(7)
+const treeArray = {
+    in: [],
+    pre: [],
+    post: []
+}
+
+newTree.inOrderTraverse(key => {
+    treeArray.in.push(key)
+})
+newTree.preOrderTraverse(key => {
+    treeArray.pre.push(key)
+})
+newTree.postOrderTraverse(key => {
+    treeArray.post.push(key)
+})
+
+console.log(newTree.min())
+console.log(treeArray)

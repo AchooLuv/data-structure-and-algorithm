@@ -3,7 +3,7 @@ import {
     ValuePair
 } from '../util.js'
 
-const mountDiv = document.getElementById("mount")
+
 
 export default class Dictionary {
     constructor(toStr = toStrFn) {
@@ -33,5 +33,3 @@ export default class Dictionary {
         return false
     }
 }
-
-mountDiv.innerHTML = `${toStrFn}`
