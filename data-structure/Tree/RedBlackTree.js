@@ -9,7 +9,7 @@ const Color = {
     BLACK: -1
 }
 
-class RebBlackNode extends Node {
+class RedBlackNode extends Node {
     constructor(key) {
         super(key)
         this.key = key
@@ -26,5 +26,11 @@ export class RedBlackTree extends BinarySearchTree {
         super(compareFn)
         this.compareFn = compareFn
         this.root = null
+    }
+    insert(key) {
+
+    }
+    insertNode(node, key) {
+
     }
 }

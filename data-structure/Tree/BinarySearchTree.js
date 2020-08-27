@@ -11,7 +11,7 @@ export class Node {
     }
 }
 
-export default class BinarySearchTree {
+export class BinarySearchTree {
     constructor(compareFn = defaultCompare) {
         this.compareFn = compareFn
         this.root = null
@@ -148,30 +148,3 @@ export default class BinarySearchTree {
         }
     }
 }
-
-
-let newTree = new BinarySearchTree()
-newTree.insert(11)
-newTree.insert(3)
-newTree.insert(15)
-newTree.insert(6)
-newTree.insert(13)
-newTree.insert(7)
-const treeArray = {
-    in: [],
-    pre: [],
-    post: []
-}
-
-newTree.inOrderTraverse(key => {
-    treeArray.in.push(key)
-})
-newTree.preOrderTraverse(key => {
-    treeArray.pre.push(key)
-})
-newTree.postOrderTraverse(key => {
-    treeArray.post.push(key)
-})
-
-console.log(newTree.min())
-console.log(treeArray)

@@ -2,7 +2,7 @@ import {
     Compare,
     defaultCompare
 } from "../util.js"
-import Node from "BinarySearchTree.js"
+import {Node,BinarySearchTree} from "./BinarySearchTree.js"
 
 const BalanceFactor = {
     UNBALANCED_RIGHT: 1,
