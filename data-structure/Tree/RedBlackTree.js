@@ -28,9 +28,37 @@ export class RedBlackTree extends BinarySearchTree {
         this.root = null
     }
     insert(key) {
-
+        if (this.root == null) {
+            this.root = new RedBlackNode(key)
+            this.root.color = Color.BLACK
+        } else {
+            const newNode = this.insertNode(this.root, key)
+            // 修复红黑树
+            this.fixTreeProperties(newNode)
+        }
     }
     insertNode(node, key) {
-
+        if (this.root == null) return false
+        if (this.compareFn(node.key, key) === Compare.BIGGER_THAN) {
+            if (node.left == null) {
+                node.left = new RedBlackTree(key)
+                node.left.parent = node
+                return node.left
+            } else {
+                return this.insertNode(node.left, key)
+            }
+        }
+        if (this.compareFn(node.key, key) === Compare.LESS_THAN) {
+            if (node.right == null) {
+                node.right = new RedBlackTree(key)
+                node.right.parent = node
+                return node.right
+            } else {
+                return this.insertNode(node.right, key)
+            }
+        }
+    }
+    fixTreeProperties(node){
+        
     }
 }

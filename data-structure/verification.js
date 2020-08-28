@@ -1,8 +1,8 @@
 import {
-    AVLTree
-} from "./Tree/AVLTree.js"
+    RedBlackTree
+} from "./Tree/RedBlackTree.js"
 
-let tree = new AVLTree()
+let tree = new RedBlackTree()
 tree.insert(7);
 tree.insert(15);
 tree.insert(5);
