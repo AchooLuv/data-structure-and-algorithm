@@ -11,6 +11,10 @@ export function defaultCompare(a, b) {
     return a > b ? Compare.BIGGER_THAN : Compare.LESS_THAN;
 }
 
+export function defaultEquals(a, b) {
+    return a === b;
+}
+
 export function defaultToString(item) {
     if (item === null) {
         return "NULL"
