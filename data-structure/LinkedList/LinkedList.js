@@ -17,7 +17,7 @@ export default class LinkedList {
     }
   }
   getElementAt(index) {
-    if (index >= 0 && index <= this.count) {
+    if (index >= 0 && index < this.count) {
       let current = this.head;
       for (let i = 0; i < index && current != null; i++) {
         current = current.next;
@@ -34,7 +34,7 @@ export default class LinkedList {
       // 链为空
       this.head = node;
     } else {
-      current = this.getElementAt(this.count);
+      current = this.getElementAt(this.count - 1);
       current.next = node;
     }
     this.count++;

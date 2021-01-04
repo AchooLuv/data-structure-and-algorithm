@@ -1,0 +1,75 @@
+class ListNode {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
+}
+class MyLinkedList {
+  constructor() {
+    this.len = 0;
+    this.head = null;
+  }
+  getAt(index) {
+    if (index >= 0 && index < this.len) {
+      let current = this.head;
+      for (let i = 0; i < index && current != null; i++) {
+        current = current.next;
+      }
+      return current;
+    }
+    return -1;
+  }
+  get(index) {
+    const current = this.getAt(index);
+    return current === -1 ? -1 : current.value;
+  }
+  addAtHead(val) {
+    const node = new ListNode(val);
+    let current = this.head;
+    if (this.head == null) {
+      this.head = node;
+    } else {
+      node.next = current;
+      this.head = node;
+    }
+    this.len++;
+  }
+  addAtTail(val) {
+    const node = new ListNode(val);
+    let current = this.head;
+    if (this.head == null) {
+      this.head = node;
+    } else {
+      current = this.getAt(this.len - 1);
+      current.next = node;
+    }
+    this.len++;
+  }
+  addAtIndex(index, val) {
+    if (index <= 0) {
+      this.addAtHead(val);
+    } else if (index > 0 && index < this.len) {
+      const node = new ListNode(val);
+      const previous = this.getAt(index - 1);
+      const current = previous.next;
+      node.next = current;
+      previous.next = node;
+      this.len++;
+    } else if (index === this.len) {
+      this.addAtTail(val)
+    }
+  }
+  deleteAtIndex(index) {
+    if (index >= 0 && index < this.len) {
+      let current = this.head;
+      if (index === 0) {
+        this.head = current.next;
+      } else {
+        const previous = this.getAt(index - 1);
+        current = previous.next;
+        previous.next = current.next;
+      }
+      this.len--;
+    }
+  }
+}
